@@ -1,20 +1,20 @@
 <template>
-  <p
+  <component :is="as"
     class="font-poppins text-base font-normal"
     :class="{ 'text-dark dark:text-light': !overrideColour }"
   >
     <slot />
-  </p>
+  </component>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  overrideColour: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
+import type { TypographyProps } from "@/components/types/Typography";
+
+withDefaults(defineProps<TypographyProps>(), {
+  overrideColour: false,
+  as: "p"
 });
+
 </script>
 
 <style scoped></style>

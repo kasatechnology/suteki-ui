@@ -38,10 +38,10 @@
                     <XMarkIcon class="dark:text-light text-dark w-8 h-8" />
                   </button>
                 </div>
-                <div>
+                <div class="flex-grow">
                   <slot>
                     <TitleH4>
-                      <DialogTitle> Payment successful </DialogTitle>
+                      <DialogTitle as="span"> Payment successful </DialogTitle>
                     </TitleH4>
                     <div class="mt-2">
                       <BodyCopy>

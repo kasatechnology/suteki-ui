@@ -1,19 +1,19 @@
 <template>
-  <p
+  <component
+    :is="as as string"
     class="font-poppins text-base font-medium"
-    :class="{ 'text-dark dark:text-light': !overrideColor }"
+    :class="{ 'text-dark dark:text-light': !overrideColour }"
   >
     <slot />
-  </p>
+  </component>
 </template>
 
 <script setup lang="ts">
-export interface StrongCopyProps {
-  overrideColor?: boolean;
-}
+import type { TypographyProps } from "@/components/types/Typography";
 
-const { overrideColor } = withDefaults(defineProps<StrongCopyProps>(), {
+withDefaults(defineProps<TypographyProps>(), {
   overrideColor: false,
+  as: "p",
 });
 </script>
 

@@ -2,9 +2,10 @@
   <TextInput
     v-bind="$props"
     :type="computedType"
+    v-model="modelValue"
   >
     <button
-      class="mr-2 flex items-center justify-center"
+      class="mr-1 flex items-center justify-center"
       @click="showPassword = !showPassword"
     >
       <span class="sr-only">Show password</span>

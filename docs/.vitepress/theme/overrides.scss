@@ -1,0 +1,22 @@
+:root {
+    --vp-c-brand: #3772ff;
+    --vp-c-brand-light: #5996ff;
+    --vp-c-brand-lighter: #8ebbff;
+    --vp-c-brand-lightest: #bcd5ff;
+    --vp-c-brand-dark: #1b4df5;
+    --vp-c-brand-darker: #1439e1;
+    --vp-c-brand-dimm: rgb(89, 150, 255, 0.1);
+}
+
+.display {
+    @import "@unocss/reset/tailwind";
+}
+
+.display h1, .display h2, .display h3, .display h4, .display p {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    line-height: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}

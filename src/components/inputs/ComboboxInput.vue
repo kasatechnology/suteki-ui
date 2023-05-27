@@ -1,17 +1,13 @@
 <template>
-  <Combobox
-    as="div"
-    v-model="selected"
-    v-slot="{ open }"
-    :multiple="multiple ?? false"
-  >
+  <Combobox as="div" class="flex flex-col gap-1.5 flex-grow" v-model="selected" v-slot="{ open }">
     <ComboboxLabel>
       <Label v-if="label" :status="status"> {{ label }}</Label>
     </ComboboxLabel>
-    <div class="relative mt-1">
+    <div class="relative">
       <div
         :class="[
-          'relative box-border flex h-12 flex-row items-center rounded-md border-2 bg-light-200 text-dark dark:text-light pl-3 pr-1 font-poppins focus:outline-none dark:bg-dark-300',
+          'box-border flex h-12 flex-row items-center rounded-md border-2 ' +
+            'bg-light-200 pl-3 pr-1 font-poppins focus:outline-none dark:bg-dark-800',
           inputStyle[status],
         ]"
       >
@@ -19,7 +15,7 @@
           class="w-full border-none bg-transparent outline-none focus:ring-0"
           :displayValue="
             (item): string =>
-              Array.isArray(item) && multiple ? (item as Option[]).map((x) => x.label).join(', ') : (item as Option).label
+             displayValue
           "
           @change="query = $event.target.value"
         />
@@ -28,7 +24,7 @@
         >
           <ChevronDownIcon
             :class="[
-              'h-5 w-5 transform transition-transform duration-100',
+              'h-5 w-5 transform transition-transform duration-200',
               { 'rotate-180': open },
             ]"
           />
@@ -42,13 +38,15 @@
       >
         <ComboboxOptions
           :class="[
-            'absolute mt-1 max-h-60 z-50 box-border w-full overflow-hidden flex-row items-center rounded-md border-2 bg-light-200 text-dark dark:text-light font-poppins focus:outline-none dark:bg-dark-300',
+            'absolute z-50 mt-1 box-border max-h-60 w-full flex-row items-center ' +
+              'overflow-hidden rounded-md border-2 bg-light-100 font-poppins ' +
+              'text-dark focus:outline-none dark:bg-dark-800 dark:text-light',
             inputStyle[status],
           ]"
         >
           <div
             v-if="filteredOptions.length === 0 && query !== ''"
-            class="flex items-center relative cursor-default select-none h-12 px-3 text-dark dark:text-light"
+            class="relative flex h-12 cursor-default select-none items-center px-3 text-dark dark:text-light"
           >
             Nothing found.
           </div>
@@ -61,10 +59,13 @@
             v-slot="{ selected, active }"
           >
             <li
-              class="flex items-center justify-between relative cursor-default select-none h-12 px-3"
-              :class="{
-                'bg-primary': active,
-              }"
+              :class="[
+                'relative flex h-12 cursor-default select-none transition ' +
+                  'items-center justify-between px-3 ',
+                {
+                  'bg-primary': active,
+                },
+              ]"
             >
               <span class="block truncate" :class="{ 'text-light': active }">
                 {{ option.label }}
@@ -99,37 +100,26 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
 } from "@heroicons/vue/20/solid";
-import type { BaseInputProps } from "../types/Inputs";
+import type { ComboboxInputProps, Option } from "../types/Inputs";
 import Label from "./shared/Label.vue";
 
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface ComboboxInputProps extends BaseInputProps {
-  options: Option[];
-  multiple?: boolean;
-}
-
-const props =
-  withDefaults(defineProps<ComboboxInputProps>(), {
-    label: "",
-    disabled: false,
-    message: "",
-    type: "text",
-    status: "default",
-    placeholder: "",
-    multiple: false,
-  });
+const props = withDefaults(defineProps<ComboboxInputProps>(), {
+  label: "",
+  disabled: false,
+  message: "",
+  type: "text",
+  status: "default",
+  placeholder: "",
+  multiple: false,
+});
 
 const inputStyle = {
-  default: "border-light-300 dark:border-dark-200",
+  default: "border-light-200 dark:border-dark-600",
   invalid: "border-error",
   valid: "border-success",
 };
 
-let selected = ref(props.options.slice(0, 2));
+let selected = ref<Option | Option[] | null>(props.multiple ? [] : null);
 let query = ref("");
 
 let filteredOptions = computed(() =>
@@ -142,4 +132,10 @@ let filteredOptions = computed(() =>
           .includes(query.value.toLowerCase().replace(/\s+/g, ""))
       )
 );
+
+const displayValue = computed(() => {
+  if (!selected.value) return "Select";
+
+  return (selected.value as Option).label;
+});
 </script>

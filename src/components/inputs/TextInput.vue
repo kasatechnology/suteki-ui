@@ -1,9 +1,10 @@
 <template>
-  <label class="flex flex-col gap-1">
+  <label class="flex flex-col gap-1.5">
     <Label v-if="label" :status="status"> {{ label }}</Label>
     <div
       :class="[
-        'box-border flex h-12 flex-row items-center rounded-md border-2 bg-light-200 pl-3 pr-1 font-poppins focus:outline-none dark:bg-dark-800',
+        'box-border flex h-12 flex-row items-center rounded-md border-2 ' +
+         'bg-light-100 pl-3 pr-1 font-poppins focus:outline-none dark:bg-dark-800',
         inputStyle[status],
       ]"
     >
@@ -11,7 +12,7 @@
         :type="type"
         :disabled="disabled"
         :placeholder="placeholder"
-        class="flex-shrink flex-grow bg-transparent text-dark focus:outline-none dark:text-light"
+        class="flex-shrink flex-grow bg-transparent text-dark w-full focus:outline-none dark:text-light"
         v-model="modelValue"
       />
       <div class="flex-shrink-0 flex-grow-0">
@@ -37,7 +38,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
 });
 
 const inputStyle = {
-  default: "border-light-300 dark:border-dark-600",
+  default: "border-light-200 dark:border-dark-600",
   invalid: "border-error",
   valid: "border-success",
 };

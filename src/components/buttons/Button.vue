@@ -19,6 +19,7 @@
         class="absolute h-6 w-6 text-dark dark:text-light"
       />
       <BodyCopy
+        as="span"
         :class="[
           { 'opacity-0': loading },
           { 'text-light': !secondary },
@@ -65,13 +66,13 @@ const buttonStyle = {
   },
   secondary: {
     default:
-      "bg-primary/0 border-2 border-primary ring-primary hover:bg-primary/10 disabled:hover:bg-primary/0",
+      "bg-primary/0 border-2 border-solid border-primary ring-primary hover:bg-primary/10 disabled:hover:bg-primary/0",
     alternative:
-      "bg-secondary/0 border-2 border-secondary ring-secondary hover:bg-active-purple/10 disabled:hover:bg-secondary/0",
+      "bg-secondary/0 border-2 border-solid border-secondary ring-secondary hover:bg-secondary/10 disabled:hover:bg-secondary/0",
     warning:
-      "bg-error/0 border-2 border-error ring-error hover:bg-error/10 disabled:hover:bg-error/0",
+      "bg-error/0 border-2 border-solid border-error ring-error hover:bg-error/10 disabled:hover:bg-error/0",
     success:
-      "bg-success/0 border-2 border-success ring-success hover:bg-success/10 disabled:hover:bg-success/0",
+      "bg-success/0 border-2 border-solid border-success ring-success hover:bg-success/10 disabled:hover:bg-success/0",
   },
 };
 </script>

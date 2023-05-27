@@ -8,17 +8,17 @@
     <Switch
       v-model="modelValue"
       :class="[
-        modelValue ? 'bg-primary' : 'bg-primary/20',
+        modelValue ? 'bg-primary' : 'bg-primary/30',
         large ? 'h-12 w-24' : 'h-8 w-16',
       ]"
-      class="relative inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+      class="bg-light relative inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
     >
       <span class="sr-only">{{ label }}</span>
       <span
         aria-hidden="true"
         :class="[
           modelValue ? translation : 'translate-x-0',
-          large ? 'h-10 w-10 ml-0.5' : 'h-7 w-7',
+          large ? 'h-10 w-10 ml-0.5' : 'h-6.5 w-6.5 ml-0.25',
         ]"
         class="pointer-events-none inline-block transform rounded-full bg-white shadow-lg transition duration-200 ease-in-out"
       />

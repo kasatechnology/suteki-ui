@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
+    "module": "NodeNext",
     "types": ["node", "vite/client"],
     "baseUrl": ".",
     "outDir": "dist_types",

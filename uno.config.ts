@@ -13,12 +13,22 @@ export default defineConfig({
     presetWebFonts({
       provider: "google",
       fonts: {
-        dm: "DM Sans",
+        dm: {
+          name: "DM Sans",
+          weights: ["200", "300", "400", "500", "600", "700", "800", "900"],
+        },
         poppins: "Poppins",
+        weights: ["200", "300", "400", "500", "600", "700", "800", "900"],
       },
     }),
   ],
   theme: {
+    extend: {
+      spacing: {
+        "0.25": "0.0625rem",
+        "6.5": "1.625rem",
+      },
+    },
     borderRadius: {
       xs: "0.25rem",
       sm: "0.5rem",

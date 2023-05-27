@@ -12,9 +12,9 @@
       leave-from-class="transform scale-100 opacity-100"
       leave-to-class="transform scale-95 opacity-0"
     >
-      <CheckIcon class="h-5 w-5 text-success" v-if="status === 'valid'" />
+      <CheckIcon class="h-4 w-4 text-success" v-if="status === 'valid'" />
       <XMarkIcon
-        class="h-5 w-5 text-error"
+        class="h-4 w-4 text-error"
         v-else-if="status === 'invalid'"
       />
     </transition>
